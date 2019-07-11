@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/activity_account" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:id="@id/textview" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    <Button android:id="@id/btn_logout" android:layout_width="100.0dip" android:layout_height="wrap_content" android:text="登出" />
+    <Button android:id="@id/btn_pay" android:visibility="gone" android:layout_width="100.0dip" android:layout_height="wrap_content" android:text="微信支付" />
+    <Button android:id="@id/aliPay" android:visibility="gone" android:layout_width="100.0dip" android:layout_height="wrap_content" android:text="支付宝支付" android:onClick="aliPay" />
+    <Button android:layout_width="100.0dip" android:layout_height="wrap_content" android:text="自动支付" android:onClick="autoPay" />
+</LinearLayout>

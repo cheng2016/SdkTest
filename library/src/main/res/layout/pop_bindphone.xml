@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@drawable/login_background" android:layout_width="@dimen/dialog_width" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:id="@id/ll" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <TextView android:textSize="16.0sp" android:textColor="#ff24aef4" android:layout_gravity="center" android:id="@id/title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="3.0dip" android:layout_marginTop="12.0dip" android:text="绑定手机" />
+        <RelativeLayout android:layout_gravity="center" android:layout_width="@dimen/dialog_content_width" android:layout_height="38.0dip" android:layout_marginTop="15.0dip">
+            <EditText android:id="@id/et_phone" android:hint="请输入手机号" style="@style/edittext_style" />
+            <ImageView android:background="@drawable/icon_001" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:layout_centerVertical="true" />
+        </RelativeLayout>
+        <LinearLayout android:layout_gravity="center" android:id="@id/layout_phoneCode" android:layout_width="@dimen/dialog_content_width" android:layout_height="38.0dip" android:layout_marginTop="8.0dip">
+            <RelativeLayout android:layout_width="0.0dip" android:layout_height="38.0dip" android:layout_weight="1.0">
+                <EditText android:id="@id/et_phone_code" android:layout_width="fill_parent" android:hint="@string/plese_phone_confirm" android:layout_alignParentLeft="true" android:layout_alignParentTop="true" style="@style/edittext_style" />
+                <ImageView android:gravity="center" android:background="@drawable/icon_002" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:layout_centerVertical="true" />
+            </RelativeLayout>
+            <Button android:textSize="@dimen/font_size_14" android:gravity="center" android:id="@id/btn_phone_code" android:layout_width="0.0dip" android:layout_marginLeft="@dimen/widget_size_5" android:text="获取验证码" android:layout_weight="1.0" android:layout_alignParentRight="true" android:layout_centerVertical="true" style="@style/pop_button" />
+        </LinearLayout>
+        <Button android:textSize="16.0sp" android:layout_gravity="center" android:id="@id/btn_submit" android:layout_marginTop="10.0dip" android:text="提交" style="@style/pop_button" />
+    </LinearLayout>
+    <Button android:id="@id/close" android:background="@drawable/button_close" android:layout_width="15.0dip" android:layout_height="15.0dip" android:layout_alignParentTop="true" android:layout_alignParentRight="true" />
+    <TextView android:textSize="@dimen/font_size_14" android:textColor="@color/gray_color" android:id="@id/tv_close" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/returnStr" android:layout_alignParentTop="true" />
+    <TextView android:textSize="@dimen/font_size_14" android:textColor="#ff868686" android:id="@id/btn_noBind" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:text="暂不绑定" android:layout_toLeftOf="@id/close" android:layout_below="@id/ll" />
+</RelativeLayout>

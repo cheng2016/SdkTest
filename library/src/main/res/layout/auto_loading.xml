@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@drawable/login_background" android:layout_width="@dimen/dialog_width" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:layout_width="@dimen/dialog_content_width" android:layout_height="wrap_content" android:layout_centerInParent="true">
+        <LinearLayout android:gravity="center" android:id="@id/layout" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:layout_centerHorizontal="true">
+            <ImageView android:id="@id/progressBar" android:background="@drawable/icon_loading" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="10.0dip" />
+            <TextView android:id="@id/welcome" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="欢迎您: " />
+            <TextView android:textColor="@color/blue_color" android:id="@id/tv_account" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="138****3434" />
+        </LinearLayout>
+        <Button android:textSize="16.0sp" android:layout_gravity="center" android:id="@id/btn_login" android:layout_marginTop="12.0dip" android:text="登录中. . ." android:layout_below="@id/layout" style="@style/pop_button" />
+        <TextView android:textSize="@dimen/font_size_14" android:textColor="#ff868686" android:id="@id/btn_bindPhone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/widget_size_8" android:text="绑定手机" android:layout_below="@id/btn_login" android:layout_alignParentRight="true" />
+    </RelativeLayout>
+</RelativeLayout>

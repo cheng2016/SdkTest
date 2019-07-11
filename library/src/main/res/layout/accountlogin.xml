@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_gravity="center_horizontal" android:orientation="vertical" android:id="@id/layout_login" android:layout_width="@dimen/dialog_content_width" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:layout_gravity="center" android:layout_width="@dimen/dialog_content_width" android:layout_height="38.0dip" android:layout_marginTop="15.0dip">
+        <EditText android:id="@id/et_login_account" android:hint="@string/plese_account_register" style="@style/edittext_style" />
+        <ImageView android:background="@drawable/icon_001" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:layout_centerVertical="true" />
+    </RelativeLayout>
+    <LinearLayout android:layout_gravity="center" android:orientation="horizontal" android:id="@id/layout_phoneCode" android:layout_width="@dimen/dialog_content_width" android:layout_height="38.0dip" android:layout_marginTop="10.0dip">
+        <RelativeLayout android:layout_width="178.0dip" android:layout_height="38.0dip">
+            <EditText android:id="@id/et_login_password" android:layout_width="178.0dip" android:hint="@string/plese_psd" android:inputType="textPassword" style="@style/edittext_style" />
+            <ImageView android:gravity="center" android:background="@drawable/icon_002" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:layout_centerVertical="true" />
+        </RelativeLayout>
+        <Button android:textSize="@dimen/font_size_14" android:textColor="#ff868686" android:gravity="center" android:id="@id/btn_forgetPsd" android:background="@drawable/gray" android:layout_width="fill_parent" android:layout_marginLeft="@dimen/widget_size_1" android:text="@string/forget_psd" android:layout_alignParentTop="true" android:layout_alignParentRight="true" style="@style/pop_button" />
+    </LinearLayout>
+    <Button android:textSize="16.0sp" android:layout_gravity="center" android:id="@id/btn_login" android:layout_marginTop="10.0dip" android:text="登录" style="@style/pop_button" />
+</LinearLayout>

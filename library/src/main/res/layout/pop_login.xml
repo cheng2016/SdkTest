@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@drawable/login_background" android:layout_width="@dimen/dialog_width" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <ImageView android:layout_gravity="center" android:id="@id/logo" android:background="@drawable/logo_002" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" />
+        <RelativeLayout android:layout_gravity="center" android:layout_width="@dimen/dialog_content_width" android:layout_height="38.0dip" android:layout_marginTop="15.0dip">
+            <EditText android:id="@id/et_login_account" android:hint="@string/plese_account" style="@style/edittext_style" />
+            <ImageView android:background="@drawable/icon_001" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:layout_centerVertical="true" />
+        </RelativeLayout>
+        <LinearLayout android:layout_gravity="center" android:id="@id/layout_phoneCode" android:visibility="gone" android:layout_width="@dimen/dialog_content_width" android:layout_height="38.0dip" android:layout_marginTop="8.0dip">
+            <RelativeLayout android:layout_width="0.0dip" android:layout_height="38.0dip" android:layout_weight="1.0">
+                <EditText android:id="@id/et_phone_code" android:layout_width="fill_parent" android:hint="@string/plese_phone_confirm" style="@style/edittext_style" />
+                <ImageView android:gravity="center" android:background="@drawable/icon_002" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:layout_centerVertical="true" />
+            </RelativeLayout>
+            <Button android:textSize="@dimen/font_size_14" android:gravity="center" android:id="@id/btn_phone_code" android:layout_width="0.0dip" android:layout_marginLeft="@dimen/widget_size_5" android:text="重新获取" android:layout_weight="1.0" android:layout_alignParentRight="true" android:layout_centerVertical="true" style="@style/pop_button" />
+        </LinearLayout>
+        <Button android:textSize="16.0sp" android:layout_gravity="center" android:id="@id/btn_login" android:layout_marginTop="10.0dip" android:text="@string/login" style="@style/pop_button" />
+        <LinearLayout android:gravity="center" android:layout_gravity="center" android:layout_width="fill_parent" android:layout_height="30.0dip">
+            <CheckBox android:id="@id/cb_agree" android:layout_marginTop="0.5dip" android:checked="true" style="@style/pop_checkbox" />
+            <TextView android:textSize="12.0sp" android:textColor="#ff868686" android:id="@id/tv_agree" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:text="@string/html" />
+        </LinearLayout>
+        <RelativeLayout android:layout_gravity="center" android:layout_width="@dimen/dialog_content_width" android:layout_height="wrap_content" android:layout_marginTop="10.0dip">
+            <LinearLayout android:gravity="center" android:layout_gravity="center" android:id="@id/btn_wxLogin" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                <ImageView android:layout_gravity="center" android:background="@drawable/icon_wechat" android:layout_width="30.0dip" android:layout_height="30.0dip" />
+                <TextView android:textSize="13.0sp" android:textColor="#ff868686" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="3.0dip" android:text="微信" />
+            </LinearLayout>
+            <LinearLayout android:gravity="center" android:layout_gravity="center" android:id="@id/btn_gstLogin" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="8.0dip" android:layout_toRightOf="@id/btn_wxLogin">
+                <ImageView android:layout_gravity="center" android:background="@drawable/icon_tourist" android:layout_width="30.0dip" android:layout_height="30.0dip" android:layout_alignParentTop="true" />
+                <TextView android:textSize="13.0sp" android:textColor="#ff868686" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="3.0dip" android:text="游客" />
+            </LinearLayout>
+            <TextView android:textSize="@dimen/font_size_14" android:textColor="#ff868686" android:id="@id/btn_otherLogin" android:background="@android:color/transparent" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/other_login" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+        </RelativeLayout>
+    </LinearLayout>
+    <Button android:id="@id/close" android:background="@drawable/button_close" android:layout_width="15.0dip" android:layout_height="15.0dip" android:layout_alignParentTop="true" android:layout_alignParentRight="true" />
+</RelativeLayout>

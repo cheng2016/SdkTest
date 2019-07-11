@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@drawable/login_background" android:layout_width="@dimen/dialog_width" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:id="@id/ll" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <FrameLayout android:layout_gravity="center" android:id="@id/title_layout" android:layout_width="@dimen/dialog_content_width" android:layout_height="@dimen/widget_size_30" android:layout_marginTop="1.0px" />
+        <FrameLayout android:layout_gravity="center" android:id="@id/content_layout" android:layout_width="@dimen/dialog_content_width" android:layout_height="@dimen/widget_size_150" android:layout_marginTop="12.0dip" />
+        <Button android:textSize="16.0sp" android:layout_gravity="center" android:id="@id/btn_submit" android:layout_marginTop="10.0dip" android:text="确定" style="@style/pop_button" />
+    </LinearLayout>
+    <Button android:id="@id/close" android:background="@drawable/button_close" android:layout_width="15.0dip" android:layout_height="15.0dip" android:layout_alignParentTop="true" android:layout_alignParentRight="true" />
+</RelativeLayout>

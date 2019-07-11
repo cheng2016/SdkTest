@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@drawable/login_background" android:layout_width="@dimen/dialog_width" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:layout_alignParentTop="true">
+        <TextView android:textSize="16.0sp" android:textColor="#ff24aef4" android:layout_gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="3.0dip" android:layout_marginTop="12.0dip" android:text="密码找回" />
+        <LinearLayout android:layout_gravity="center" android:orientation="horizontal" android:layout_width="@dimen/dialog_content_width" android:layout_height="wrap_content" android:layout_marginTop="10.0dip">
+            <RelativeLayout android:layout_gravity="center" android:layout_width="@dimen/widget_size_90" android:layout_height="38.0dip">
+                <ImageView android:background="@drawable/gray" android:layout_width="fill_parent" android:layout_height="38.0dip" android:layout_marginLeft="5.0dip" android:layout_centerVertical="true" />
+                <ImageView android:id="@id/imageView" android:background="@drawable/icon_001" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_centerVertical="true" />
+                <TextView android:textSize="@dimen/font_size_14" android:textColor="#ff525252" android:layout_gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:text="手机号" android:layout_toRightOf="@id/imageView" android:layout_alignBottom="@id/imageView" />
+            </RelativeLayout>
+            <EditText android:id="@id/et_account" android:layout_width="fill_parent" android:layout_marginLeft="@dimen/widget_size_1" android:hint="请输入已绑定的手机号" android:layout_alignParentRight="true" style="@style/edittext_style" />
+        </LinearLayout>
+        <LinearLayout android:layout_gravity="center" android:orientation="horizontal" android:id="@id/layout_phoneCode" android:layout_width="@dimen/dialog_content_width" android:layout_height="wrap_content" android:layout_marginTop="10.0dip">
+            <RelativeLayout android:layout_gravity="center" android:layout_width="@dimen/widget_size_90" android:layout_height="38.0dip">
+                <ImageView android:background="@drawable/gray" android:layout_width="fill_parent" android:layout_height="38.0dip" android:layout_marginLeft="5.0dip" android:layout_centerVertical="true" />
+                <ImageView android:id="@id/imageView1" android:background="@drawable/icon_003" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_centerVertical="true" />
+                <TextView android:textSize="@dimen/font_size_14" android:textColor="#ff525252" android:layout_gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:text="验证码" android:layout_toRightOf="@id/imageView1" android:layout_alignBottom="@id/imageView1" />
+            </RelativeLayout>
+            <EditText android:id="@id/et_phone_code" android:layout_width="fill_parent" android:layout_marginLeft="@dimen/widget_size_1" android:hint="请输入验证码" style="@style/edittext_style" />
+        </LinearLayout>
+        <Button android:textSize="16.0sp" android:layout_gravity="center" android:id="@id/btn_submit" android:layout_marginTop="10.0dip" android:text="下一步" style="@style/pop_button" />
+        <TextView android:textSize="10.0sp" android:textColor="@color/gray_color" android:layout_gravity="center" android:layout_width="@dimen/dialog_content_width" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:text="温馨提示：只有绑定了手机的账号才能找回密码" android:layout_alignParentTop="true" />
+    </LinearLayout>
+    <Button android:id="@id/close" android:background="@drawable/button_close" android:layout_width="15.0dip" android:layout_height="15.0dip" android:layout_alignParentTop="true" android:layout_alignParentRight="true" />
+    <TextView android:textSize="@dimen/font_size_14" android:textColor="@color/gray_color" android:id="@id/tv_close" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/returnStr" android:layout_alignParentTop="true" />
+</RelativeLayout>

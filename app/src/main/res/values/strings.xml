@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">icloudSDK</string>
+
+    <string name="login">立即登录</string>
+
+</resources>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@drawable/login_background" android:layout_width="@dimen/dialog_width" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_centerHorizontal="true" android:layout_centerVertical="true">
+        <TextView android:textSize="16.0sp" android:textColor="#ff24aef4" android:layout_gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="3.0dip" android:layout_marginTop="12.0dip" android:text="修改密码" />
+        <LinearLayout android:layout_gravity="center" android:orientation="horizontal" android:layout_width="@dimen/dialog_content_width" android:layout_height="wrap_content" android:layout_marginTop="6.0dip">
+            <RelativeLayout android:layout_gravity="center" android:layout_width="@dimen/widget_size_90" android:layout_height="38.0dip">
+                <ImageView android:background="@drawable/gray" android:layout_width="fill_parent" android:layout_height="38.0dip" android:layout_marginLeft="5.0dip" android:layout_centerVertical="true" />
+                <ImageView android:id="@id/imageView" android:background="@drawable/icon_003" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_centerVertical="true" />
+                <TextView android:textSize="@dimen/font_size_14" android:textColor="#ff525252" android:layout_gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:text="账    号" android:layout_toRightOf="@id/imageView" android:layout_alignBottom="@id/imageView" />
+            </RelativeLayout>
+            <EditText android:id="@id/et_account" android:layout_width="fill_parent" android:layout_marginLeft="@dimen/widget_size_1" android:hint="请输入账号" android:layout_alignParentRight="true" style="@style/edittext_style" />
+        </LinearLayout>
+        <LinearLayout android:layout_gravity="center" android:orientation="horizontal" android:layout_width="@dimen/dialog_content_width" android:layout_height="wrap_content" android:layout_marginTop="6.0dip">
+            <RelativeLayout android:layout_gravity="center" android:layout_width="@dimen/widget_size_90" android:layout_height="38.0dip">
+                <ImageView android:background="@drawable/gray" android:layout_width="fill_parent" android:layout_height="38.0dip" android:layout_marginLeft="5.0dip" android:layout_centerVertical="true" />
+                <ImageView android:id="@id/imageView1" android:background="@drawable/icon_004" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_centerVertical="true" />
+                <TextView android:textSize="@dimen/font_size_14" android:textColor="#ff525252" android:layout_gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:text="原密码" android:layout_toRightOf="@id/imageView1" android:layout_alignBottom="@id/imageView1" />
+            </RelativeLayout>
+            <EditText android:id="@id/et_psd" android:layout_width="fill_parent" android:layout_marginLeft="@dimen/widget_size_1" android:hint="请输入原密码" android:layout_alignParentRight="true" android:inputType="textPassword" style="@style/edittext_style" />
+        </LinearLayout>
+        <LinearLayout android:layout_gravity="center" android:orientation="horizontal" android:layout_width="@dimen/dialog_content_width" android:layout_height="wrap_content" android:layout_marginTop="6.0dip">
+            <RelativeLayout android:layout_gravity="center" android:layout_width="@dimen/widget_size_90" android:layout_height="38.0dip">
+                <ImageView android:background="@drawable/gray" android:layout_width="fill_parent" android:layout_height="38.0dip" android:layout_marginLeft="5.0dip" android:layout_centerVertical="true" />
+                <ImageView android:id="@id/imageView2" android:background="@drawable/icon_004" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_centerVertical="true" />
+                <TextView android:textSize="@dimen/font_size_14" android:textColor="#ff525252" android:layout_gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:text="新密码" android:layout_toRightOf="@id/imageView2" android:layout_alignBottom="@id/imageView2" />
+            </RelativeLayout>
+            <EditText android:id="@id/et_newpsd" android:layout_width="fill_parent" android:layout_marginLeft="@dimen/widget_size_1" android:hint="请输入新密码" android:layout_alignParentRight="true" android:inputType="textPassword" style="@style/edittext_style" />
+        </LinearLayout>
+        <LinearLayout android:layout_gravity="center" android:orientation="horizontal" android:layout_width="@dimen/dialog_content_width" android:layout_height="wrap_content" android:layout_marginTop="6.0dip">
+            <RelativeLayout android:layout_gravity="center" android:layout_width="@dimen/widget_size_90" android:layout_height="38.0dip">
+                <ImageView android:background="@drawable/gray" android:layout_width="fill_parent" android:layout_height="38.0dip" android:layout_marginLeft="5.0dip" android:layout_centerVertical="true" />
+                <ImageView android:id="@id/imageView4" android:background="@drawable/icon_004" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_centerVertical="true" />
+                <TextView android:textSize="@dimen/font_size_14" android:textColor="#ff525252" android:layout_gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:text="确   认" android:layout_toRightOf="@id/imageView4" android:layout_alignBottom="@id/imageView4" />
+            </RelativeLayout>
+            <EditText android:id="@id/et_newpsdConfirm" android:layout_width="fill_parent" android:layout_marginLeft="@dimen/widget_size_1" android:hint="请再次输入新密码" android:layout_alignParentRight="true" android:inputType="textPassword" style="@style/edittext_style" />
+        </LinearLayout>
+        <Button android:textSize="16.0sp" android:layout_gravity="center" android:id="@id/btn_submit" android:layout_marginTop="10.0dip" android:text="提交" style="@style/pop_button" />
+    </LinearLayout>
+    <Button android:id="@id/close" android:background="@drawable/button_close" android:layout_width="15.0dip" android:layout_height="15.0dip" android:layout_alignParentTop="true" android:layout_alignParentRight="true" />
+</RelativeLayout>

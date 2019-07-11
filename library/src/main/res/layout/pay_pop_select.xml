@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:background="@drawable/web_pay_tip_dialog_background" android:layout_width="@dimen/dialog_width" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:layout_marginTop="10.0dip" android:layout_weight="1.0">
+        <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <Button android:id="@id/btn_ali_pay" android:background="@drawable/web_pay__pay_other_button_selector" android:layout_width="fill_parent" android:layout_height="65.0dip" android:layout_alignParentTop="true" android:layout_centerHorizontal="true" />
+            <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true">
+                <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/web_pay_other_alipay_icon" />
+                <TextView android:textColor="@color/dk_color_333333" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/channel_alipay" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_margin="10.0dip" android:layout_weight="1.0">
+        <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <Button android:id="@id/btn_gamecard_pay" android:background="@drawable/web_pay__pay_other_button_selector" android:layout_width="fill_parent" android:layout_height="65.0dip" android:layout_alignParentTop="true" android:layout_centerHorizontal="true" />
+            <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true">
+                <ImageView android:id="@id/pay_tencent_icon_iv" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/web_pay_other_tencentmm_icon" />
+                <TextView android:textColor="@color/dk_color_333333" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/channel_tencentmm" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>
