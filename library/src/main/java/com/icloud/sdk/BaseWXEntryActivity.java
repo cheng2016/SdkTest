@@ -23,8 +23,8 @@ public class BaseWXEntryActivity extends Activity implements IWXAPIEventHandler 
       if (!this.api.handleIntent(getIntent(), this))
         finish(); 
       return;
-    } catch (Exception paramBundle) {
-      paramBundle.printStackTrace();
+    } catch (Exception e) {
+      e.printStackTrace();
       return;
     } 
   }
@@ -43,9 +43,3 @@ public class BaseWXEntryActivity extends Activity implements IWXAPIEventHandler 
     finish();
   }
 }
-
-
-/* Location:              C:\Users\mitni\Desktop\gitwork\AndroidTool\classes-dex2jar.jar!\com\icloud\sdk\BaseWXEntryActivity.class
- * Java compiler version: 6 (50.0)
- * JD-Core Version:       1.0.6
- */

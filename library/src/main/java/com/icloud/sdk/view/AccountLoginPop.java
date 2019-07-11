@@ -167,8 +167,8 @@ public class AccountLoginPop extends Dialog implements View.OnClickListener {
             try {
               jSONObject.put("method", "account");
               jSONObject.put("is_success", true);
-            } catch (JSONException param1String1) {
-              param1String1.printStackTrace();
+            } catch (JSONException e) {
+              e.printStackTrace();
             } 
             ActionSdk.getInstance().setRegister(jSONObject.toString());
           }

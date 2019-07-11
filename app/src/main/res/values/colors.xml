@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="blue_color">#ff24aef4</color>
+
     <color name="colorAccent">#ffff4081</color>
     <color name="colorPrimary">#ff3f51b5</color>
     <color name="colorPrimaryDark">#ff303f9f</color>
-    <color name="dk_color_333333">#ff333333</color>
-    <color name="gray_color">#ff868686</color>
+
 </resources>
