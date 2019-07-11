@@ -1,4 +1,4 @@
-package com.icloud.sdk.test;
+package com.sdk.test;
 
 import android.app.Activity;
 import android.os.Bundle;
