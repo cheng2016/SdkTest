@@ -3,4 +3,5 @@
     <dimen name="activity_horizontal_margin">16.0dip</dimen>
     <dimen name="activity_vertical_margin">16.0dip</dimen>
 
+    <dimen name="widget_size_200">200.0dip</dimen>
 </resources>
