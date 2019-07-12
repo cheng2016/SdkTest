@@ -25,8 +25,8 @@ public class URLImageView extends ImageView {
               Bitmap bitmap = BitmapFactory.decodeByteArray(arrayOfByte, 0, arrayOfByte.length);
               URLImageView.this.setImageBitmap(bitmap);
               return;
-            } catch (Exception param1Call) {
-              param1Call.printStackTrace();
+            } catch (Exception e) {
+              e.printStackTrace();
               return;
             } 
           }
