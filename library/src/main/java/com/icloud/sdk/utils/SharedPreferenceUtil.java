@@ -33,20 +33,19 @@ public class SharedPreferenceUtil {
   
   public static String getAccessToken() { return getPreference().getString(ACCESSTOKEN, ""); }
   
-  public static String getAccount() {
-    String str2 = getPreference().getString("account", null);
-    str1 = str2;
-    if (str2 != null)
-      try {
-        byte[] arrayOfByte = TypeConvert.hexStr2ByteArr(str2);
-        RC4Http.RC4Base(arrayOfByte, 0, arrayOfByte.length);
-        return new String(arrayOfByte);
-      } catch (Exception str1) {
-        str1.printStackTrace();
-        return str2;
-      }  
-    return str1;
-  }
+    public static String getAccount(){
+         String account = getPreference().getString("account",null);
+            if (null !=account){
+                try {
+                    byte[] b = TypeConvert.hexStr2ByteArr(account);
+                    RC4Http.RC4Base(b,0,b.length);
+                    account = new String(b);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        return account;
+    }
   
   public static String getCurrentDay() { return getPreference().getString(CURRENTDAY, "time"); }
   
