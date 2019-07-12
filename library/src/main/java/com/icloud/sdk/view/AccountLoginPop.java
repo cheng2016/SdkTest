@@ -77,12 +77,13 @@ public class AccountLoginPop extends Dialog implements View.OnClickListener {
   private void accountLogin() {
     String str1 = this.login_account.getText().toString().trim();
     if (TextUtils.isEmpty(str1)) {
-      Toast.makeText(this.context, "账号不能为空", 0).show();
+      ToastUtil.showShort(context,"账号不能为空");
       return;
     } 
     String str2 = this.et_login_password.getText().toString().trim();
     if (TextUtils.isEmpty(str2)) {
-      Toast.makeText(this.context, "密码不能为空", 0).show();
+      ToastUtil.showShort(context,"密码不能为空");
+      
       return;
     } 
     YZSDK.instance().login(this.context, str1, str2, Account.LoginType.reg, new CallbackListener() {
@@ -100,7 +101,7 @@ public class AccountLoginPop extends Dialog implements View.OnClickListener {
   
   private boolean checkAgree() {
     if (!this.cb_agree.isChecked())
-      Toast.makeText(this.context, "请同意用户协议", 0).show(); 
+      ToastUtil.showShort(context,"请同意用户协议");
     return this.cb_agree.isChecked();
   }
   
@@ -154,13 +155,13 @@ public class AccountLoginPop extends Dialog implements View.OnClickListener {
   private void register() {
     final String account = this.et_register_account.getText().toString().trim();
     if (TextUtils.isEmpty(str1))
-      Toast.makeText(this.context, "账号不能为空", 0).show(); 
+      ToastUtil.showShort(context,"账号不能为空");
     final String psd = this.et_register_psd.getText().toString().trim();
     if (TextUtils.isEmpty(str2))
-      Toast.makeText(this.context, "密码不能为空", 0).show(); 
+      ToastUtil.showShort(context,"密码不能为空");
     YZSDK.instance().regist(this.context, str1, str2, new CallbackListener() {
           public void onResult(ResultCode param1ResultCode, String param1String1, String param1String2) {
-            Toast.makeText(AccountLoginPop.this.context, param1String1, 0).show();
+            ToastUtil.showShort(context,param1String1);
             if (param1ResultCode == ResultCode.SUCCESS)
               AccountLoginPop.this.loginSuccess(account, psd); 
             JSONObject jSONObject = new JSONObject();
@@ -192,20 +193,20 @@ public class AccountLoginPop extends Dialog implements View.OnClickListener {
       this.tv_login.setTextColor(this.context.getResources().getColor(R.color.blue_color));
       this.iv_register.setBackgroundResource(R.drawable.bg_line001);
       this.iv_login.setBackgroundResource(R.drawable.bg_line002);
-      this.layout_login.setVisibility(0);
-      this.layout_register.setVisibility(8);
-      this.btn_bindPhone.setVisibility(0);
-      this.btn_changePsd.setVisibility(0);
+      layout_login.setVisibility(View.VISIBLE);
+      layout_register.setVisibility(View.GONE);
+      btn_bindPhone.setVisibility(View.VISIBLE);
+      btn_changePsd.setVisibility(View.VISIBLE);
       return;
     } 
     this.tv_login.setTextColor(this.context.getResources().getColor(R.color.gray_color));
     this.tv_register.setTextColor(this.context.getResources().getColor(R.color.blue_color));
     this.iv_register.setBackgroundResource(R.drawable.bg_line002);
     this.iv_login.setBackgroundResource(R.drawable.bg_line001);
-    this.layout_login.setVisibility(8);
-    this.layout_register.setVisibility(0);
-    this.btn_bindPhone.setVisibility(4);
-    this.btn_changePsd.setVisibility(4);
+    layout_login.setVisibility(View.GONE);
+    layout_register.setVisibility(View.VISIBLE);
+    btn_bindPhone.setVisibility(View.INVISIBLE);
+    btn_changePsd.setVisibility(View.INVISIBLE);
   }
   
   public void onClick(View paramView) {
@@ -222,13 +223,13 @@ public class AccountLoginPop extends Dialog implements View.OnClickListener {
       String str1 = this.login_account.getText().toString().trim();
       String str2 = this.et_login_password.getText().toString().trim();
       if (TextUtils.isEmpty(str1) || TextUtils.isEmpty(str2)) {
-        Toast.makeText(this.context, "请先输入账号密码", 0).show();
+        ToastUtil.showShort(context,"请先输入账号密码");
         return;
       } 
       YZSDK.instance().checkLogin(this.context, str1, str2, Account.LoginType.reg, new CallbackListener() {
             public void onResult(ResultCode param1ResultCode, String param1String1, String param1String2) {
               if (param1ResultCode != ResultCode.SUCCESS) {
-                Toast.makeText(AccountLoginPop.this.context, param1String1, 0).show();
+                ToastUtil.showShort(context,param1String1);
                 return;
               } 
               (new BindPhonePop(AccountLoginPop.this.context, null)).show();
@@ -253,10 +254,6 @@ public class AccountLoginPop extends Dialog implements View.OnClickListener {
   
   private enum State {
     Login, Register;
-    
-    static  {
-      $VALUES = new State[] { Login, Register };
-    }
   }
 }
 
