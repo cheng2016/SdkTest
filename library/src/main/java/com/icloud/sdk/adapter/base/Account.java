@@ -106,8 +106,9 @@ public class Account {
   
   protected String getName() { return "yunzhong"; }
   
+  JSONObject jSONObject;
   public boolean login(final Context ctx, final String jsonClient, final CallbackListener loginListener) {
-    OkHttpUtil.post(paramContext, HttpConfig.LOGIN_URL, paramString, new OkHttpUtil.SimpleResponseHandler() {
+    OkHttpUtil.post(ctx, HttpConfig.LOGIN_URL, jsonClient, new OkHttpUtil.SimpleResponseHandler() {
           public void onFailure(Exception param1Exception) {
             if (loginListener != null)
               loginListener.onResult(ResultCode.Fail, "加载失败，请重试", param1Exception.toString()); 
@@ -116,7 +117,7 @@ public class Account {
           public void onSuccess(Call call, Response param1Response) {
             try {
               String str1 = new String(param1Response.body().string());
-              JSONObject jSONObject = new JSONObject(str1);
+              jSONObject = new JSONObject(str1);
               String str2 = jSONObject.optString("result", "");
               String str3 = jSONObject.optString("message", "");
               if (str2.equals("success")) {
@@ -126,10 +127,10 @@ public class Account {
                 Account.this.registerSuccess(jsonClient);
                 Account.this.loginSuccess(str1);
                 if (i != 2 && !SharedPreferenceUtil.getCurrentDay().equals(str2 + FileUtils.getCurrTime())) {
-                  (new BindPhonePop(ctx, new CallbackListener(this, jSONObject) {
+                  (new BindPhonePop(ctx, new CallbackListener() {
                         public void onResult(ResultCode param2ResultCode, String param2String1, String param2String2) {
                           if (loginListener != null)
-                            loginListener.onResult(ResultCode.SUCCESS, "登录成功", finaldata.toString()); 
+                            loginListener.onResult(ResultCode.SUCCESS, "登录成功", jSONObject.toString()); 
                         }
                       })).show();
                   SharedPreferenceUtil.setCurrentDay(str2 + FileUtils.getCurrTime());
@@ -183,43 +184,24 @@ public class Account {
     return true;
   }
   
-  protected void loginSuccess(String paramString) {
-    String str7 = "";
-    String str5 = "";
-    String str4 = "";
-    String str6 = "";
-    String str3 = str4;
-    String str2 = str7;
-    String str1 = str5;
-    try {
-      JSONObject jSONObject = (new JSONObject(paramString)).getJSONObject("data");
-      str3 = str4;
-      str2 = str7;
-      str1 = str5;
-      paramString = jSONObject.optString("nickname");
-      str3 = str4;
-      str2 = paramString;
-      str1 = str5;
-      str5 = jSONObject.optString("playerId");
-      str3 = str4;
-      str2 = paramString;
-      str1 = str5;
-      str4 = jSONObject.optString("accessToken");
-      str3 = str4;
-      str2 = paramString;
-      str1 = str5;
-      str7 = jSONObject.optString("deviceKey");
-      str3 = str7;
-      str1 = str5;
-      str2 = paramString;
-      paramString = str3;
-      str3 = str4;
-    } catch (JSONException paramString) {
-      paramString.printStackTrace();
-      paramString = str6;
-    } 
-    User.getInstance().upUserInfo(str2, str1, str3, paramString);
-  }
+  protected void loginSuccess(String phpjson) {
+        String nickname = "";
+        String playerId = "";
+        String accessToken = "";
+        String deviceKey = "";
+        JSONObject dataJson = null;
+        try {
+            dataJson = new JSONObject(phpjson).getJSONObject("data");
+            nickname = dataJson.optString("nickname");
+            playerId = dataJson.optString("playerId");
+            accessToken = dataJson.optString("accessToken");
+            deviceKey = dataJson.optString("deviceKey");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        User.getInstance().upUserInfo(nickname, playerId, accessToken, deviceKey);
+
+    }
   
   public void logout(Context paramContext) { User.getInstance().logout(); }
   
@@ -354,29 +336,13 @@ public class Account {
       paramCallbackListener.onResult(ResultCode.SUCCESS, "success", ""); 
   }
   
-  public enum LoginType {
-    guest, quick, reg, wechat;
-    
-    static  {
-      guest = new LoginType("guest", 2);
-      quick = new LoginType("quick", 3);
-      $VALUES = new LoginType[] { reg, wechat, guest, quick };
-    }
+  ublic static enum LoginType {
+    reg, wechat, guest, quick,
   }
-  
-  public enum SendCodeType {
-    register, binding, forget;
-    
-    static  {
-      forget = new SendCodeType("forget", true);
-      binding = new SendCodeType("binding", 2);
-      $VALUES = new SendCodeType[] { register, forget, binding };
-    }
+
+  public static enum SendCodeType {
+    register,
+    forget,
+    binding,
   }
 }
-
-
-/* Location:              C:\Users\mitni\Desktop\gitwork\AndroidTool\classes-dex2jar.jar!\com\icloud\sdk\adapter\base\Account.class
- * Java compiler version: 6 (50.0)
- * JD-Core Version:       1.0.6
- */
