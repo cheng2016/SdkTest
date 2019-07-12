@@ -54,10 +54,10 @@ public class GameActivity extends Activity implements View.OnClickListener {
   
   protected void onCreate(Bundle paramBundle) {
     super.onCreate(paramBundle);
-    setContentView(2130968577);
-    this.btn_logout = (Button)findViewById(2131296264);
-    this.btn_pay = (Button)findViewById(2131296265);
-    this.textview = (TextView)findViewById(2131296263);
+    setContentView(R.layout.activity_account);
+    btn_logout = (Button) findViewById(R.id.btn_logout);
+    btn_pay = (Button) findViewById(R.id.btn_pay);
+    textview = (TextView) findViewById(R.id.textview);
     this.btn_logout.setOnClickListener(this);
     this.btn_pay.setOnClickListener(this);
     String str = getIntent().getStringExtra("sdkinfo");
