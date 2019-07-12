@@ -5,23 +5,22 @@ public class RC4Http implements EncryptionTool {
   
   private static String shareKey = "cf79b00806591e4f8bfd411ef334a948";
   
-  public static byte[] RC4Base(byte[] paramArrayOfByte, int paramInt1, int paramInt2) {
-    char c = Character.MIN_VALUE;
-    byte b = 0;
-    byte[] arrayOfByte = initKey(shareKey);
-    while (paramInt1 < paramInt2) {
-      c = c + true & 0xFF;
-      b = (arrayOfByte[c] & 0xFF) + b & 0xFF;
-      byte b1 = arrayOfByte[c];
-      arrayOfByte[c] = arrayOfByte[b];
-      arrayOfByte[b] = b1;
-      byte b2 = arrayOfByte[c];
-      byte b3 = arrayOfByte[b];
-      paramArrayOfByte[paramInt1] = (byte)(paramArrayOfByte[paramInt1] ^ arrayOfByte[(b2 & 0xFF) + (b3 & 0xFF) & 0xFF]);
-      paramInt1++;
-    } 
-    return paramArrayOfByte;
-  }
+	public static byte[] RC4Base(byte[] input, int start, int end) {
+		int x = 0;
+		int y = 0;
+		byte key[] = initKey(shareKey);
+		int xorIndex;
+		for (int i = start; i < end; i++) {
+			x = (x + 1) & 0xff;
+			y = ((key[x] & 0xff) + y) & 0xff;
+			byte tmp = key[x];
+			key[x] = key[y];
+			key[y] = tmp;
+			xorIndex = ((key[x] & 0xff) + (key[y] & 0xff)) & 0xff;
+			input[i] = (byte) (input[i] ^ key[xorIndex]);
+		}
+		return input;
+	}
   
   public static byte[] copyOf(byte[] paramArrayOfByte, int paramInt) {
     byte[] arrayOfByte = new byte[paramInt];
@@ -29,27 +28,31 @@ public class RC4Http implements EncryptionTool {
     return arrayOfByte;
   }
   
-  private static byte[] initKey(String paramString) {
-    if (key == null) {
-      byte[] arrayOfByte = paramString.getBytes();
-      key = new byte[256];
-      byte b;
-      for (b = 0; b < 'Ā'; b++)
-        key[b] = (byte)b; 
-      int i = 0;
-      byte b1 = 0;
-      if (arrayOfByte == null || arrayOfByte.length == 0)
-        return null; 
-      for (b = 0; b < 'Ā'; b++) {
-        b1 = (arrayOfByte[i] & 0xFF) + (key[b] & 0xFF) + b1 & 0xFF;
-        byte b2 = key[b];
-        key[b] = key[b1];
-        key[b1] = b2;
-        i = (i + true) % arrayOfByte.length;
-      } 
-    } 
-    return copyOf(key, key.length);
-  }
+private static byte[] initKey(String aKey) {
+		if (key == null) {
+			byte[] b_key = aKey.getBytes();
+			key = new byte[256];
+
+			for (int i = 0; i < 256; i++) {
+				key[i] = (byte) i;
+			}
+
+			int index1 = 0;
+			int index2 = 0;
+			if (b_key == null || b_key.length == 0) {
+				return null;
+			}
+			for (int i = 0; i < 256; i++) {
+				index2 = ((b_key[index1] & 0xff) + (key[i] & 0xff) + index2) & 0xff;
+				byte tmp = key[i];
+				key[i] = key[index2];
+				key[index2] = tmp;
+				index1 = (index1 + 1) % b_key.length;
+			}
+		}
+
+		return copyOf(key, key.length);
+	}
   
   public byte[] decry(byte[] paramArrayOfByte) { return RC4Base(paramArrayOfByte, 0, paramArrayOfByte.length); }
   
