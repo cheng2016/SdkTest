@@ -73,23 +73,26 @@ public class ClientDeviceInfo {
       SharedPreferenceUtil.setMac(this.mac);
     }
 
-    public void getMachineId (Context paramContext){
-      if (DUtils.checkPermission(paramContext, "android.permission.READ_PHONE_STATE")) {
-        TelephonyManager telephonyManager = (TelephonyManager) paramContext.getSystemService("phone");
+    public void getMachineId(Context mContext) {
+        if (!DUtils.checkPermission(mContext, Manifest.permission.READ_PHONE_STATE)) {
+            return;
+        }
+        TelephonyManager telephonyManager = (TelephonyManager) mContext
+                .getSystemService(Context.TELEPHONY_SERVICE);
         if (telephonyManager != null) {
-          this.imsi = telephonyManager.getSubscriberId();
-          this.imei = telephonyManager.getDeviceId();
+            imsi = telephonyManager.getSubscriberId();
+            imei = telephonyManager.getDeviceId();
         }
-        if (this.imei == null) {
-          this.imei = SharedPreferenceUtil.getImei();
+
+        if (imei == null) {
+            imei = SharedPreferenceUtil.getImei();
         } else {
-          SharedPreferenceUtil.setImei(this.imei);
+            SharedPreferenceUtil.setImei(imei);
         }
-        if (this.imsi == null) {
-          this.imsi = "";
-          return;
+
+        if (imsi == null) {
+            imsi = "";
         }
-      }
     }
 
     public void init (Application paramApplication){
@@ -99,10 +102,11 @@ public class ClientDeviceInfo {
       getGameName(paramApplication);
     }
 
-    public String toString () {
-      return "ClientDeviceInfo [brandid=, version=" + this.version + ", mac=" + this.mac + ", imei=" + this.imei + ", imsi=" + this.imsi + ", unionid=, system=" + this.system + ", province=, area=, nickname=" + this.nickname + "]";
+    public String toString() {
+        return "ClientDeviceInfo [brandid=" + ", version="
+                + version + ", mac=" + mac + ", imei=" + imei + ", imsi=" + imsi + ", unionid=" +
+                ", system=" + system + ", province=" + "" + ", area=" + "" + ", nickname=" + nickname + "]";
     }
-  }
 }
 
 /* Location:              C:\Users\mitni\Desktop\gitwork\AndroidTool\classes-dex2jar.jar!\com\icloud\sdk\model\ClientDeviceInfo.class
