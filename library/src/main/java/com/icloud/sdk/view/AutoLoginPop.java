@@ -106,7 +106,7 @@ public class AutoLoginPop extends Dialog implements View.OnClickListener {
       SharedPreferenceUtil.setAccessToken("");
     } 
     if (paramView.getId() == R.id.btn_bindPhone && !this.flag) {
-      (new BindPhonePop(this.context, new CallbackListener(this) {
+      (new BindPhonePop(this.context, new CallbackListener() {
             public void onResult(ResultCode param1ResultCode, String param1String1, String param1String2) { AutoLoginPop.this.login(); }
           })).show();
       this.handler.removeCallbacks(this.thread);
