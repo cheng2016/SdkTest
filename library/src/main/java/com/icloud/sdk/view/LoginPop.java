@@ -253,17 +253,7 @@ public class LoginPop extends Dialog implements View.OnClickListener {
   
   private enum LoginType {
     guest, quick, reg, wechat;
-    
-    static  {
-      guest = new LoginType("guest", 2);
-      quick = new LoginType("quick", 3);
-      $VALUES = new LoginType[] { reg, wechat, guest, quick };
-    }
   }
 }
 
 
-/* Location:              C:\Users\mitni\Desktop\gitwork\AndroidTool\classes-dex2jar.jar!\com\icloud\sdk\view\LoginPop.class
- * Java compiler version: 6 (50.0)
- * JD-Core Version:       1.0.6
- */
