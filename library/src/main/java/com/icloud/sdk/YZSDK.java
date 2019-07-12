@@ -29,7 +29,6 @@ public class YZSDK extends BaseYZSDK {
   private static YZSDK _instance;
   
   private boolean comLogin(Context paramContext, String paramString, CallbackListener paramCallbackListener, boolean paramBoolean) {
-    String str = paramString;
     if (TextUtils.isEmpty(paramString))
       str = "{}"; 
     if (paramContext == null || (paramContext instanceof Activity && ((Activity)paramContext).isFinishing())) {
@@ -44,7 +43,7 @@ public class YZSDK extends BaseYZSDK {
       return false;
     } 
     try {
-      JSONObject jSONObject = new JSONObject(str);
+      JSONObject jSONObject = new JSONObject(paramString);
       jSONObject.put("gameId", (ConfigInfo.getInstance()).GAME_ID);
       jSONObject.put("channelId", (ConfigInfo.getInstance()).CHANNEL_ID);
       jSONObject.put("zoneId", 0);
@@ -54,16 +53,15 @@ public class YZSDK extends BaseYZSDK {
       jSONObject.put("platform", Platform.Android);
       jSONObject.put("timeStamp", FileUtils.getSecondTimestamp());
       jSONObject.put("signType", "md5");
-      String str1 = jSONObject.toString();
-      if (paramBoolean)
-        return Account.getInstance().loginCheck(paramContext, str1, paramCallbackListener); 
+      paramString = jSONObject.toString();
     } catch (Exception e) {
       Log.e("comLogin", e.toString());
-      paramString = str;
-      if (paramBoolean)
-        return Account.getInstance().loginCheck(paramContext, paramString, paramCallbackListener); 
     } 
-    return Account.getInstance().login(paramContext, paramString, paramCallbackListener);
+    if (paramBoolean) {
+        return Account.getInstance().loginCheck(ctx, jsonStr, listener);
+    } else {
+        return Account.getInstance().login(ctx, jsonStr, listener);
+    }
   }
   
   public static YZSDK instance() {
