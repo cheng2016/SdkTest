@@ -2,6 +2,7 @@ package com.icloud.sdk.utils;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.provider.Settings;
@@ -23,12 +24,12 @@ public class DUtils {
         if (i == 0)
           return true; 
         bool = false;
-      } catch (Throwable paramContext) {
+      } catch (Throwable e) {
         bool = false;
       } 
       return bool;
     } 
-    if (paramContext.getPackageManager().checkPermission(paramString, paramContext.getPackageName()) == 0)
+    if (paramContext.getPackageManager().checkPermission(paramString, paramContext.getPackageName()) == PackageManager.PERMISSION_GRANTED)
       bool = true; 
     return bool;
   }
@@ -36,7 +37,7 @@ public class DUtils {
   public static String getDeviceInfo(Context paramContext) {
     try {
       JSONObject jSONObject = new JSONObject();
-      TelephonyManager telephonyManager = (TelephonyManager)paramContext.getSystemService("phone");
+      TelephonyManager telephonyManager = (TelephonyManager)paramContext.getSystemService(Context.TELEPHONY_SERVICE);
       String str1 = null;
       if (checkPermission(paramContext, "android.permission.READ_PHONE_STATE"))
         str1 = telephonyManager.getDeviceId(); 
@@ -50,8 +51,8 @@ public class DUtils {
         str1 = Settings.Secure.getString(paramContext.getContentResolver(), "android_id"); 
       jSONObject.put("device_id", str1);
       return jSONObject.toString();
-    } catch (Exception paramContext) {
-      paramContext.printStackTrace();
+    } catch (Exception e) {
+      e.printStackTrace();
       return null;
     } 
   }
@@ -103,7 +104,7 @@ public class DUtils {
     try {
       WifiManager wifiManager = (WifiManager)paramContext.getSystemService("wifi");
       return checkPermission(paramContext, "android.permission.ACCESS_WIFI_STATE") ? wifiManager.getConnectionInfo().getMacAddress() : "";
-    } catch (Throwable paramContext) {
+    } catch (Throwable e) {
       return "";
     } 
   }
