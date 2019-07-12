@@ -21,6 +21,7 @@ import com.icloud.sdk.listener.ResultCode;
 import com.icloud.sdk.model.PhpInfo;
 import com.icloud.sdk.utils.TimeThread;
 import com.icloud.sdk.utils.WeiXinUtil;
+import com.icloud.sdk.utils.ToastUtil;
 import java.util.List;
 
 public class LoginPop extends Dialog implements View.OnClickListener {
@@ -145,7 +146,7 @@ public class LoginPop extends Dialog implements View.OnClickListener {
       ToastUtil.showShort(context,"请输入手机号");
       return;
     } 
-    if (this.layout_phoneCode.getVisibility() == 0) {
+    if (this.layout_phoneCode.getVisibility() == View.VISIBLE) {
       loginByPhone();
       return;
     } 
