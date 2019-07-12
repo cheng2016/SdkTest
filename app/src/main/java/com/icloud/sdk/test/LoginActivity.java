@@ -41,7 +41,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     return true;
   }
   
-  private void initview() { this.login_login = (Button)findViewById(2131296267); }
+  private void initview() { this.login_login = (Button)findViewById(R.id.login_login); }
   
   private void login() { YZSDK.instance().login(this, new CallbackListener() {
           public void onResult(ResultCode param1ResultCode, String param1String1, String param1String2) {
@@ -56,13 +56,13 @@ public class LoginActivity extends Activity implements View.OnClickListener {
   private void setListener() { this.login_login.setOnClickListener(this); }
   
   public void onClick(View paramView) {
-    if (paramView.getId() == 2131296267)
+    if (paramView.getId() == R.id.login_login)
       login(); 
   }
   
   protected void onCreate(Bundle paramBundle) {
     super.onCreate(paramBundle);
-    setContentView(2130968578);
+    setContentView(R.layout.activity_main);
     YZSDK.instance().init(this, new CallbackListener() {
           public void onResult(ResultCode param1ResultCode, String param1String1, String param1String2) {
             if (param1ResultCode != ResultCode.SUCCESS) {
