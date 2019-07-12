@@ -26,34 +26,27 @@ public class Pay {
     return instance;
   }
   
-  protected void interPay(Activity paramActivity, String paramString, CallbackListener paramCallbackListener) {
-    String str = null;
-    try {
-      JSONObject jSONObject = new JSONObject(paramString);
-      if (currentPayType.equals(PayType.AliPay)) {
-        AlipayUtil.instance().pay(paramActivity, jSONObject, paramCallbackListener);
-        return;
-      } 
-    } catch (JSONException paramString) {
-      paramString.printStackTrace();
-      paramString = str;
-      if (currentPayType.equals(PayType.AliPay)) {
-        AlipayUtil.instance().pay(paramActivity, paramString, paramCallbackListener);
-        return;
-      } 
-    } 
-    if (currentPayType.equals(PayType.WXPay)) {
-      if (Util.isWXAppInstalled(paramActivity)) {
-        WeiXinUtil.instance().pay(paramActivity, paramString, paramCallbackListener);
-        return;
-      } 
-      Toast.makeText(paramActivity, "请安装微信", 0).show();
-      return;
-    } 
-  }
+    protected void interPay(Activity context,String jsonStr, CallbackListener payListener) {
+        JSONObject json=null;
+        try {
+             json = new JSONObject(jsonStr);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        if (currentPayType.equals(com.icloud.sdk.config.PayType.AliPay)){
+             AlipayUtil.instance().pay(context,json,payListener);
+        }else if (currentPayType.equals(com.icloud.sdk.config.PayType.WXPay)){
+           if (Util.isWXAppInstalled(context)){
+               WeiXinUtil.instance().pay(context,json,payListener);
+           }else {
+               Toast.makeText(context, "请安装微信", Toast.LENGTH_SHORT).show();
+           }
+        }
+    }
   
   public boolean pay(final Activity ctx, String paramString, final CallbackListener payListener) {
-    OkHttpUtil.post(paramActivity, HttpConfig.ORDER_URL, paramString, new OkHttpUtil.SimpleResponseHandler() {
+    OkHttpUtil.post(ctx, HttpConfig.ORDER_URL, paramString, new OkHttpUtil.SimpleResponseHandler() {
           public void onFailure(Exception param1Exception) {
             if (payListener != null)
               payListener.onResult(ResultCode.Fail, param1Exception.toString(), ""); 
@@ -73,9 +66,9 @@ public class Pay {
                 payListener.onResult(ResultCode.Fail, str2, str2);
                 return;
               } 
-            } catch (Exception param1Call) {
+            } catch (Exception e) {
               if (payListener != null)
-                payListener.onResult(ResultCode.Fail, "服务器参数异常", param1Call.toString()); 
+                payListener.onResult(ResultCode.Fail, "服务器参数异常", e.toString()); 
             } 
           }
         });
