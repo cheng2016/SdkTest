@@ -44,8 +44,8 @@ public class PhpInfo {
         bool = false; 
       this.show_logo = bool;
       return;
-    } catch (JSONException paramString) {
-      paramString.printStackTrace();
+    } catch (JSONException e) {
+      e.printStackTrace();
       return;
     } 
   }
