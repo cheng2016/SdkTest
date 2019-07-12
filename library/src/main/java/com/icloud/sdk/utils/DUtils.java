@@ -102,7 +102,7 @@ public class DUtils {
     if (paramContext == null)
       return ""; 
     try {
-      WifiManager wifiManager = (WifiManager)paramContext.getSystemService("wifi");
+      WifiManager wifiManager = (WifiManager)paramContext.getSystemService(Context.WIFI_SERVICE);
       return checkPermission(paramContext, "android.permission.ACCESS_WIFI_STATE") ? wifiManager.getConnectionInfo().getMacAddress() : "";
     } catch (Throwable e) {
       return "";
