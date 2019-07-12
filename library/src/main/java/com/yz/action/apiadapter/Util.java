@@ -21,7 +21,7 @@ public class Util {
         PackageManager packageManager = ctx.getPackageManager();
 
         try {
-            ApplicationInfo applicationInfo = packageManager.getApplicationInfo(ctx.getPackageName(), 128);
+            ApplicationInfo applicationInfo = packageManager.getApplicationInfo(ctx.getPackageName(), PackageManager.GET_META_DATA);
             if (applicationInfo != null && applicationInfo.metaData != null) {
                 value = applicationInfo.metaData.get(name);
             }
