@@ -9,35 +9,33 @@ public class Util {
   public static String getAppName(Context paramContext) {
     try {
       PackageManager packageManager = paramContext.getPackageManager();
-      return packageManager.getApplicationLabel(packageManager.getApplicationInfo(paramContext.getPackageName(), 128)).toString();
+      return packageManager.getApplicationLabel(packageManager.getApplicationInfo(paramContext.getPackageName(), PackageManager.GET_META_DATA)).toString();
     } catch (android.content.pm.PackageManager.NameNotFoundException paramContext) {
       paramContext.printStackTrace();
       return null;
     } 
   }
   
-  public static String getMetaDataValue(Context paramContext, String paramString) {
-    String str = null;
-    PackageManager packageManager = paramContext.getPackageManager();
-    try {
-      ApplicationInfo applicationInfo = packageManager.getApplicationInfo(paramContext.getPackageName(), 128);
-      paramContext = str;
-      if (applicationInfo != null) {
-        paramContext = str;
-        if (applicationInfo.metaData != null)
-          Object object = applicationInfo.metaData.get(paramString); 
-      } 
-    } catch (Exception paramContext) {
-      paramContext.printStackTrace();
-      paramContext = str;
-    } 
-    str = paramContext;
-    if (paramContext == null) {
-      Log.e("MetaDataValue", "请查看重要错误日志:Manifests中是否配置 " + paramString + " ?");
-      str = new String();
-    } 
-    return str.toString();
-  }
+    public static String getMetaDataValue(Context ctx, String name) {
+        Object value = null;
+        PackageManager packageManager = ctx.getPackageManager();
+
+        try {
+            ApplicationInfo applicationInfo = packageManager.getApplicationInfo(ctx.getPackageName(), 128);
+            if (applicationInfo != null && applicationInfo.metaData != null) {
+                value = applicationInfo.metaData.get(name);
+            }
+        } catch (Exception var5) {
+            var5.printStackTrace();
+        }
+
+        if (value == null) {
+            Log.e("MetaDataValue", "请查看重要错误日志:Manifests中是否配置 " + name + " ?");
+            value = new String();
+        }
+
+        return value.toString();
+    }
 }
 
 
