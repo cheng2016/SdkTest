@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.swzg.yzxx.R;
+import com.icloud.game.yzhlddz.R;
 import com.icloud.sdk.YZSDK;
 import com.icloud.sdk.listener.CallbackListener;
 import com.icloud.sdk.listener.ResultCode;
