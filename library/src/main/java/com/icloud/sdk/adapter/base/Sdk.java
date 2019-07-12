@@ -50,9 +50,9 @@ public class Sdk {
                 list.onResult(ResultCode.Fail, "初始化成功", str2);
                 return;
               } 
-            } catch (Exception param1Call) {
+            } catch (Exception e) {
               if (list != null)
-                list.onResult(ResultCode.Fail, "初始化失败", param1Call.toString()); 
+                list.onResult(ResultCode.Fail, "初始化失败", e.toString()); 
             } 
           }
         }); }
