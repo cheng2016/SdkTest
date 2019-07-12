@@ -57,8 +57,8 @@ public class YZSDK extends BaseYZSDK {
       String str1 = jSONObject.toString();
       if (paramBoolean)
         return Account.getInstance().loginCheck(paramContext, str1, paramCallbackListener); 
-    } catch (Exception paramString) {
-      Log.e("comLogin", paramString.toString());
+    } catch (Exception e) {
+      Log.e("comLogin", e.toString());
       paramString = str;
       if (paramBoolean)
         return Account.getInstance().loginCheck(paramContext, paramString, paramCallbackListener); 
@@ -94,8 +94,8 @@ public class YZSDK extends BaseYZSDK {
         jSONObject.put("attach", paramString5); 
       jSONObject.put("timeStamp", FileUtils.getSecondTimestamp());
       jSONObject.put("signType", "md5");
-    } catch (Exception paramString1) {
-      paramString1.printStackTrace();
+    } catch (Exception e) {
+      e.printStackTrace();
     } 
     return Pay.getInstance().pay(paramActivity, jSONObject.toString(), paramCallbackListener);
   }
@@ -139,7 +139,7 @@ public class YZSDK extends BaseYZSDK {
       jSONObject.put("phoneCode", paramString2);
       jSONObject.put("timeStamp", FileUtils.getSecondTimestamp());
       jSONObject.put("signType", "md5");
-    } catch (Exception paramString1) {}
+    } catch (Exception e) {}
     return Account.getInstance().bindPhone(paramContext, jSONObject.toString(), paramCallbackListener);
   }
   
@@ -152,7 +152,7 @@ public class YZSDK extends BaseYZSDK {
       jSONObject.put("newPassword", paramString3);
       jSONObject.put("timeStamp", FileUtils.getSecondTimestamp());
       jSONObject.put("signType", "md5");
-    } catch (Exception paramString1) {}
+    } catch (Exception e) {}
     return Account.getInstance().changePwd(paramContext, jSONObject.toString(), paramCallbackListener);
   }
   
@@ -164,8 +164,8 @@ public class YZSDK extends BaseYZSDK {
       if (!TextUtils.isEmpty(paramString2))
         jSONObject.put("password", paramString2); 
       jSONObject.put("loginType", paramLoginType);
-    } catch (Exception paramString1) {
-      paramString1.printStackTrace();
+    } catch (Exception e) {
+      e.printStackTrace();
     } 
     return comLogin(paramContext, jSONObject.toString(), paramCallbackListener, true);
   }
@@ -211,8 +211,8 @@ public class YZSDK extends BaseYZSDK {
       if (!TextUtils.isEmpty(paramString2))
         jSONObject.put("password", paramString2); 
       jSONObject.put("loginType", paramLoginType);
-    } catch (Exception paramString1) {
-      paramString1.printStackTrace();
+    } catch (Exception exception) {
+      exception.printStackTrace();
     } 
     return comLogin(paramContext, jSONObject.toString(), paramCallbackListener, false);
   }
@@ -248,7 +248,7 @@ public class YZSDK extends BaseYZSDK {
       jSONObject.put("platform", Platform.Android);
       jSONObject.put("timeStamp", FileUtils.getSecondTimestamp());
       jSONObject.put("signType", "md5");
-    } catch (Exception paramString1) {}
+    } catch (Exception exception) {}
     return Account.getInstance().register(paramContext, jSONObject.toString(), paramCallbackListener);
   }
   
@@ -261,7 +261,7 @@ public class YZSDK extends BaseYZSDK {
       jSONObject.put("password", paramString3);
       jSONObject.put("timeStamp", FileUtils.getSecondTimestamp());
       jSONObject.put("signType", "md5");
-    } catch (Exception paramString1) {}
+    } catch (Exception exception) {}
     return Account.getInstance().resetPwd(paramContext, jSONObject.toString(), paramCallbackListener);
   }
   
@@ -278,7 +278,7 @@ public class YZSDK extends BaseYZSDK {
       jSONObject.put("type", paramSendCodeType.toString());
       jSONObject.put("timeStamp", FileUtils.getSecondTimestamp());
       jSONObject.put("signType", "md5");
-    } catch (Exception paramString) {}
+    } catch (Exception exception) {}
     return Account.getInstance().sendMsgToPhone(paramContext, jSONObject, paramCallbackListener);
   }
   
