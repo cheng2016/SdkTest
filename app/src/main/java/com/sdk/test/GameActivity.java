@@ -44,7 +44,7 @@ public class GameActivity extends Activity implements View.OnClickListener {
     switch (paramView.getId()) {
       default:
         return;
-      case 2131296264:
+      case R.id.btn_logout:
         YZSDK.instance().logout(this);
         startActivity(new Intent(this, LoginActivity.class));
         Toast.makeText(this, "登出成功", 0).show();
