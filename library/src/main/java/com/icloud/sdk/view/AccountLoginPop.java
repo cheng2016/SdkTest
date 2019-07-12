@@ -155,12 +155,12 @@ public class AccountLoginPop extends Dialog implements View.OnClickListener {
   
   private void register() {
     final String account = this.et_register_account.getText().toString().trim();
-    if (TextUtils.isEmpty(str1))
+    if (TextUtils.isEmpty(account))
       ToastUtil.showShort(context,"账号不能为空");
     final String psd = this.et_register_psd.getText().toString().trim();
-    if (TextUtils.isEmpty(str2))
+    if (TextUtils.isEmpty(psd))
       ToastUtil.showShort(context,"密码不能为空");
-    YZSDK.instance().regist(this.context, str1, str2, new CallbackListener() {
+    YZSDK.instance().regist(this.context, account, psd, new CallbackListener() {
           public void onResult(ResultCode param1ResultCode, String param1String1, String param1String2) {
             ToastUtil.showShort(context,param1String1);
             if (param1ResultCode == ResultCode.SUCCESS)
