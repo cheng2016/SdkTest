@@ -64,7 +64,7 @@ public class LoginPop extends Dialog implements View.OnClickListener {
   
   private boolean checkAgree() {
     if (!this.cb_agree.isChecked())
-      Toast.makeText(this.context, "请同意用户协议", 0).show(); 
+      ToastUtil.showShort(context,"请同意用户协议");
     return this.cb_agree.isChecked();
   }
   
@@ -109,7 +109,7 @@ public class LoginPop extends Dialog implements View.OnClickListener {
     this.cb_agree = (CheckBox)findViewById(R.id.cb_agree);
     this.close = (Button)findViewById(R.id.close);
     this.tv_agree.setMovementMethod(LinkMovementMethod.getInstance());
-    this.layout_phoneCode.setVisibility(8);
+    this.layout_phoneCode.setVisibility(View.GONE);
     ImageView imageView = this.iv_Logo;
     if ((PhpInfo.getInstance()).show_logo) {
       i = R.drawable.logo_001;
@@ -142,7 +142,7 @@ public class LoginPop extends Dialog implements View.OnClickListener {
   
   private void login() {
     if (TextUtils.isEmpty(this.login_account.getText().toString())) {
-      Toast.makeText(this.context, "请输入手机号", 0).show();
+      ToastUtil.showShort(context,"请输入手机号");
       return;
     } 
     if (this.layout_phoneCode.getVisibility() == 0) {
@@ -156,7 +156,7 @@ public class LoginPop extends Dialog implements View.OnClickListener {
     String str1 = this.login_account.getText().toString().trim();
     String str2 = this.et_phone_code.getText().toString().trim();
     if (TextUtils.isEmpty(str2)) {
-      Toast.makeText(this.context, "请输入验证码", 0).show();
+      ToastUtil.showShort(context,"请输入验证码");
       return;
     } 
     YZSDK.instance().login(this.context, str1, str2, Account.LoginType.reg, new LoginCallBack(this.context) {
@@ -176,20 +176,21 @@ public class LoginPop extends Dialog implements View.OnClickListener {
   }
   
   private void sendSmsCode() {
-    (new TimeThread(this.btn_phone_code, 60000L, 1000L)).start();
-    String str = this.login_account.getText().toString().trim();
-    if (TextUtils.isEmpty(str)) {
-      Toast.makeText(this.context, "请输入手机号", 0).show();
-      return;
-    } 
-    YZSDK.instance().sendSMSInAcc(this.context, str, Account.SendCodeType.register, new CallbackListener() {
-          public void onResult(ResultCode param1ResultCode, String param1String1, String param1String2) {
-            Toast.makeText(LoginPop.this.context, param1String1, 0).show();
-            if (param1ResultCode == ResultCode.SUCCESS) {
-              LoginPop.this.layout_phoneCode.setVisibility(0);
-              LoginPop.this.iv_Logo.setVisibility(8);
-            } 
-          }
+    new TimeThread(btn_phone_code, 60 * 1000, 1000).start();
+        String phone = login_account.getText().toString().trim();
+        if (TextUtils.isEmpty(phone)) {
+            Toast.makeText(context, "请输入手机号", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        YZSDK.instance().sendSMSInAcc(context, phone, Account.SendCodeType.register, new CallbackListener() {
+            @Override
+            public void onResult(ResultCode code, String msg, String descr) {
+                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+                if (code == ResultCode.SUCCESS) {
+                    layout_phoneCode.setVisibility(View.VISIBLE);
+                    iv_Logo.setVisibility(View.GONE);
+                }
+            }
         });
   }
   
@@ -232,7 +233,7 @@ public class LoginPop extends Dialog implements View.OnClickListener {
     if (paramView.getId() == R.id.close)
       cancel(); 
     if (paramView.getId() == R.id.btn_otherLogin && checkAgree()) {
-      (new AccountLoginPop(this.context, new LoginCallBack(this, this.context) {
+      (new AccountLoginPop(this.context, new LoginCallBack(this.context) {
             public void onNext(ResultCode param1ResultCode, String param1String1, String param1String2) {
               if (param1ResultCode == ResultCode.SUCCESS) {
                 LoginPop.this.loginListener.onResult(param1ResultCode, param1String1, param1String2);
