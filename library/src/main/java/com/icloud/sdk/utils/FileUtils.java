@@ -5,6 +5,9 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.text.TextUtils;
+
+import com.alibaba.fastjson.JSON;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -20,8 +23,8 @@ public class FileUtils {
       fileOutputStream.write(paramArrayOfByte);
       fileOutputStream.close();
       return;
-    } catch (Exception paramString) {
-      paramString.printStackTrace();
+    } catch (Exception e) {
+      e.printStackTrace();
       return;
     }
   }
