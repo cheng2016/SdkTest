@@ -30,7 +30,7 @@ public class YZSDK extends BaseYZSDK {
   
   private boolean comLogin(Context paramContext, String paramString, CallbackListener paramCallbackListener, boolean paramBoolean) {
     if (TextUtils.isEmpty(paramString))
-      str = "{}"; 
+      paramString = "{}"; 
     if (paramContext == null || (paramContext instanceof Activity && ((Activity)paramContext).isFinishing())) {
       LogUtil.e("login", "Context is null or isFinishing ");
       if (paramCallbackListener != null)
@@ -57,11 +57,10 @@ public class YZSDK extends BaseYZSDK {
     } catch (Exception e) {
       Log.e("comLogin", e.toString());
     } 
-    if (paramBoolean) {
-        return Account.getInstance().loginCheck(ctx, jsonStr, listener);
-    } else {
-        return Account.getInstance().login(ctx, jsonStr, listener);
-    }
+    if (paramBoolean)
+        return Account.getInstance().loginCheck(paramContext, paramString, paramCallbackListener);
+    else
+        return Account.getInstance().login(paramContext, paramString, paramCallbackListener);
   }
   
   public static YZSDK instance() {
