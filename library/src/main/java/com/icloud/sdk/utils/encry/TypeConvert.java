@@ -1,5 +1,7 @@
 package com.icloud.sdk.utils.encry;
 
+import java.util.Formatter;
+
 public class TypeConvert {
   public static int MAX_HEX_LENGTH = 200;
   
