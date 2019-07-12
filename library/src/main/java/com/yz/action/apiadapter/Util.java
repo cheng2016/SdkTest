@@ -10,8 +10,8 @@ public class Util {
     try {
       PackageManager packageManager = paramContext.getPackageManager();
       return packageManager.getApplicationLabel(packageManager.getApplicationInfo(paramContext.getPackageName(), PackageManager.GET_META_DATA)).toString();
-    } catch (android.content.pm.PackageManager.NameNotFoundException paramContext) {
-      paramContext.printStackTrace();
+    } catch (android.content.pm.PackageManager.NameNotFoundException e) {
+      e.printStackTrace();
       return null;
     } 
   }
