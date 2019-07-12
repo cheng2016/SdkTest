@@ -13,6 +13,7 @@ import com.icloud.sdk.YZSDK;
 import com.icloud.sdk.adapter.base.Account;
 import com.icloud.sdk.listener.CallbackListener;
 import com.icloud.sdk.listener.ResultCode;
+import com.icloud.sdk.utils.ToastUtil;
 
 public class ForgetPsdPop extends Dialog implements View.OnClickListener {
   private Button btn_submit;
@@ -52,22 +53,23 @@ public class ForgetPsdPop extends Dialog implements View.OnClickListener {
   }
   
   private void sendSmsCode() {
-    String str = this.et_phone.getText().toString().trim();
-    if (TextUtils.isEmpty(str)) {
-      Toast.makeText(this.context, "请输入手机号", 0).show();
+   String phone = this.et_phone.getText().toString().trim();
+    if (TextUtils.isEmpty(phone)) {
+      ToastUtil.showShort(context,"请输入手机号");
       return;
-    } 
-    YZSDK.instance().sendSMSInAcc(this.context, str, Account.SendCodeType.forget, new CallbackListener() {
-          public void onResult(ResultCode param1ResultCode, String param1String1, String param1String2) {
-            Toast.makeText(ForgetPsdPop.this.context, param1String1, 0).show();
-            if (param1ResultCode == ResultCode.SUCCESS) {
-              ForgetPsdPop.access$102(ForgetPsdPop.this, false);
-              ForgetPsdPop.this.layout_phoneCode.setVisibility(0);
-              return;
-            } 
-            ForgetPsdPop.this.cancel();
-          }
-        });
+    }
+    YZSDK.instance().sendSMSInAcc(context, phone, Account.SendCodeType.forget, new CallbackListener() {
+      @Override
+      public void onResult(ResultCode code, String msg, String descr) {
+        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+        if (code== ResultCode.SUCCESS){
+          isFirst = false;
+          layout_phoneCode.setVisibility(View.VISIBLE);
+        }else{
+          cancel();
+        }
+      }
+    });
   }
   
   private void setListener() {
@@ -84,7 +86,8 @@ public class ForgetPsdPop extends Dialog implements View.OnClickListener {
         String str1 = this.et_phone.getText().toString().trim();
         String str2 = this.et_phone_code.getText().toString().trim();
         if (TextUtils.isEmpty(str1) || TextUtils.isEmpty(str2))
-          Toast.makeText(this.context, "手机号或者验证码不能空", 0).show(); 
+ 
+         ToastUtil.showShort(context,"手机号或者验证码不能空");
         (new ResetPsdPop(this.context, str1, str2, null)).show();
         cancel();
       }  
