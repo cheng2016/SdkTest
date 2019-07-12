@@ -1,5 +1,4 @@
 package com.icloud.sdk.utils;
-package com.wecare.app.util;
 
 import android.Manifest;
 import android.content.Context;
@@ -58,20 +57,20 @@ public class Logger {
 
   private static String defaultDir;
 
-  static {
-    if (checkSelfPermission(App.getInstance(), Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-      Log.e(TAG, "很抱歉，没有读写权限，无法写入SD卡中");
-      return;
+    public static void init(Context context){
+        Log.i(TAG,"init");
+        pkgName = "com.icloud.sdk";
+        myPid = Process.myPid();
+        pkgCode = AppUtil.getVersionCode(context);
+        if (isSDCardOK()) {
+            defaultDir = FileUtils.getLogPath(context);
+        }
+        if (lacksPermissions(context, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            Log.e(TAG, "很抱歉，没有读写权限，无法写入SD卡中");
+            isWriter = false;
+            return;
+        }
     }
-    pkgName = App.getInstance().getPackageName();
-    myPid = Process.myPid();
-    pkgCode = AppUtils.getVersionCode(App.getInstance());
-    if (isSDCardOK()) {
-      defaultDir = Environment.getExternalStorageDirectory() + "/logger/";
-    } else {
-      defaultDir = App.getInstance().getCacheDir().getAbsolutePath() + "/logger";
-    }
-  }
 
   public static void setIsWriter(boolean isWriter) {
     Logger.isWriter = isWriter;
