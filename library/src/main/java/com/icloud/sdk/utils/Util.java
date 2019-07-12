@@ -41,7 +41,7 @@ public class Util {
     Bitmap bitmap = Bitmap.createBitmap(i, j, Bitmap.Config.RGB_565);
     Canvas canvas = new Canvas(bitmap);
     while (true) {
-      canvas.drawBitmap(paramBitmap, new Rect(false, false, i, j), new Rect(false, false, i, j), null);
+      canvas.drawBitmap(paramBitmap, new Rect(0, 0, i, j), new Rect(0, 0,i, j), null);
       if (paramBoolean)
         paramBitmap.recycle();
       ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -66,87 +66,70 @@ public class Util {
       JSONObject jSONObject = new JSONObject(paramString);
       jSONObject.put("sign", MD5Util.MD5Encode(str, "UTF-8"));
       return jSONObject;
-    } catch (Exception paramString) {
-      Log.e("generatingSign", paramString.toString());
+    } catch (Exception e) {
+      Log.e("generatingSign", e.toString());
       return new JSONObject();
     } 
   }
   
-  public static JSONObject generatingSign(JSONObject paramJSONObject) {
-    str = FileUtils.getNoSign(paramJSONObject.toString(), false);
-    str = "appKey=" + (ConfigInfo.getInstance()).APP_KEY + "&" + str + "&appSecret=" + (ConfigInfo.getInstance()).APP_SECRET;
-    LogUtil.d("sign", str);
-    try {
-      paramJSONObject.put("sign", MD5Util.MD5Encode(str, "UTF-8"));
-      return paramJSONObject;
-    } catch (Exception str) {
-      Log.e("generatingSign", str.toString());
-      return paramJSONObject;
-    } 
-  }
+	public static JSONObject generatingSign(JSONObject json){
+		String sign = FileUtils.getNoSign(json.toString(),false);
+		sign ="appKey="+ ConfigInfo.getInstance().APP_KEY+"&"+sign+"&"+"appSecret="+ConfigInfo.getInstance().APP_SECRET;
+		LogUtil.d("sign",sign);
+		try {
+			json.put("sign", MD5Util.MD5Encode(sign, "UTF-8"));
+		}catch (Exception e){
+			com.tencent.mm.opensdk.utils.Log.e("generatingSign",e.toString());
+		}
+		return json;
+	}
   
   public static String getAppName(Context paramContext) {
     try {
       PackageManager packageManager = paramContext.getPackageManager();
-      return packageManager.getApplicationLabel(packageManager.getApplicationInfo(paramContext.getPackageName(), 128)).toString();
+      return packageManager.getApplicationLabel(packageManager.getApplicationInfo(paramContext.getPackageName(), PackageManager.GET_META_DATA)).toString();
     } catch (android.content.pm.PackageManager.NameNotFoundException e) {
       e.printStackTrace();
       return null;
     } 
   }
   
-  public static byte[] getHtmlByteArray(String paramString) {
-    URL uRL2 = null;
-    URL uRL3 = null;
-    try {
-      uRL = new URL(paramString);
-      try {
-        InputStream inputStream;
-        HttpURLConnection httpURLConnection = (HttpURLConnection)uRL.openConnection();
-        uRL = uRL3;
-        if (httpURLConnection.getResponseCode() == 200)
-          inputStream = httpURLConnection.getInputStream(); 
-        return inputStreamToByte(inputStream);
-      } catch (MalformedURLException uRL) {
-      
-      } catch (IOException uRL) {
-        uRL.printStackTrace();
-        uRL = uRL2;
-        return inputStreamToByte(uRL);
-      } 
-      uRL.printStackTrace();
-      uRL = uRL2;
-      return inputStreamToByte(uRL);
-    } catch (MalformedURLException e) {
-      e.printStackTrace();
-      URL uRL = uRL2;
-      return inputStreamToByte(uRL);
-    } catch (IOException e) {}
-    e.printStackTrace();
-    URL uRL1 = uRL2;
-    return inputStreamToByte(uRL1);
-  }
+	public static byte[] getHtmlByteArray(final String url) {
+		 URL htmlUrl = null;     
+		 InputStream inStream = null;     
+		 try {         
+			 htmlUrl = new URL(url);         
+			 URLConnection connection = htmlUrl.openConnection();         
+			 HttpURLConnection httpConnection = (HttpURLConnection)connection;         
+			 int responseCode = httpConnection.getResponseCode();         
+			 if(responseCode == HttpURLConnection.HTTP_OK){             
+				 inStream = httpConnection.getInputStream();         
+			  }     
+			 } catch (MalformedURLException e) {               
+				 e.printStackTrace();     
+			 } catch (IOException e) {              
+				e.printStackTrace();    
+		  } 
+		byte[] data = inputStreamToByte(inStream);
+
+		return data;
+	}
   
-  public static byte[] inputStreamToByte(InputStream paramInputStream) {
-    ByteArrayOutputStream byteArrayOutputStream;
-    try {
-      byteArrayOutputStream = new ByteArrayOutputStream();
-      while (true) {
-        int i = paramInputStream.read();
-        if (i != -1) {
-          byteArrayOutputStream.write(i);
-          continue;
-        } 
-        break;
-      } 
-    } catch (Exception e) {
-      e.printStackTrace();
-      return null;
-    } 
-    byte[] arrayOfByte = byteArrayOutputStream.toByteArray();
-    byteArrayOutputStream.close();
-    return arrayOfByte;
-  }
+	public static byte[] inputStreamToByte(InputStream is) {
+		try{
+			ByteArrayOutputStream bytestream = new ByteArrayOutputStream();
+			int ch;
+			while ((ch = is.read()) != -1) {
+				bytestream.write(ch);
+			}
+			byte imgdata[] = bytestream.toByteArray();
+			bytestream.close();
+			return imgdata;
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
   
   public static boolean isAlipayInstalled(Context paramContext) { return isAvilible(paramContext, ALIPAY_PACK); }
   
@@ -161,15 +144,9 @@ public class Util {
   }
   
   public static boolean isNetworkAvailable(Context paramContext) {
-    NetworkInfo networkInfo = ((ConnectivityManager)paramContext.getSystemService("connectivity")).getActiveNetworkInfo();
+    NetworkInfo networkInfo = ((ConnectivityManager)paramContext.getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
     return (networkInfo != null && networkInfo.getState() == NetworkInfo.State.CONNECTED);
   }
   
   public static boolean isWXAppInstalled(Context paramContext) { return isAvilible(paramContext, WX_PACK); }
 }
-
-
-/* Location:              C:\Users\mitni\Desktop\gitwork\AndroidTool\classes-dex2jar.jar!\com\icloud\sd\\utils\Util.class
- * Java compiler version: 6 (50.0)
- * JD-Core Version:       1.0.6
- */
