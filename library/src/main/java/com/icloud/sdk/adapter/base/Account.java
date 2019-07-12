@@ -336,7 +336,7 @@ public class Account {
       paramCallbackListener.onResult(ResultCode.SUCCESS, "success", ""); 
   }
   
-  ublic static enum LoginType {
+  public static enum LoginType {
     reg, wechat, guest, quick,
   }
 
