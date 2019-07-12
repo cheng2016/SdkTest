@@ -20,33 +20,42 @@ public abstract class LoginCallBack implements CallbackListener {
     YZSDK.instance().notice(this.context, paramCallbackListener);
   }
   
-  public void notice(Context paramContext, String paramString1, ResultCode paramResultCode, String paramString2, String paramString3) {
-    Log.i("LoginCallBack", "notice ");
-    (new NoticePop(paramContext, paramString1, new NoticePop.OnCancellCallBack(this, paramResultCode, paramString2, paramString3) {
-          public void exit() { LoginCallBack.this.onNext(ResultCode.CANCEL, "停服中 ", "停服中"); }
-          
-          public void login() { LoginCallBack.this.onNext(code, msg, descr); }
-        })).show();
-  }
+    public void notice(Context context, String noticeData, final ResultCode code, final String msg, final String descr) {
+        Log.i(TAG,"notice ");
+        NoticePop noticePop = new NoticePop(context, noticeData, new NoticePop.OnCancellCallBack() {
+            @Override
+            public void login() {
+                onNext(code, msg, descr);
+            }
+
+            @Override
+            public void exit() {
+                onNext(ResultCode.CANCEL, "停服中 ", "停服中");
+            }
+        });
+        noticePop.show();
+    }
   
   public abstract void onNext(ResultCode paramResultCode, String paramString1, String paramString2);
   
-  public void onResult(final ResultCode code, final String msg, final String descr) {
-    Log.i("LoginCallBack", "onResult ");
-    if (paramResultCode == ResultCode.SUCCESS) {
-      isNotice(new CallbackListener() {
-            public void onResult(ResultCode param1ResultCode, String param1String1, String param1String2) {
-              if (param1ResultCode == ResultCode.SUCCESS) {
-                LoginCallBack.this.notice(LoginCallBack.this.context, param1String2, code, msg, descr);
-                return;
-              } 
-              LoginCallBack.this.onNext(code, msg, descr);
-            }
-          });
-      return;
-    } 
-    onNext(paramResultCode, paramString1, paramString2);
-  }
+    @Override
+    public void onResult(final ResultCode code, final String msg, final String descr) {
+        Log.i(TAG,"onResult ");
+        if(code == ResultCode.SUCCESS){
+            isNotice(new CallbackListener() {
+                @Override
+                public void onResult(ResultCode resultCode, String message, String noticeData) {
+                    if (resultCode == ResultCode.SUCCESS) {
+                        notice(context, noticeData, code, msg, descr);
+                    } else {
+                        onNext(code, msg, descr);
+                    }
+                }
+            });
+        }else {
+            onNext(code, msg, descr);
+        }
+    }
 }
 
 
