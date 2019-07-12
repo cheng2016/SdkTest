@@ -32,16 +32,14 @@ public class AutoLoginPop extends Dialog implements View.OnClickListener {
   
   private Runnable thread = new Runnable() {
       public void run() {
-        AutoLoginPop.this.btn_login.setText("登录中...");
-        AutoLoginPop.access$102(AutoLoginPop.this, true);
-        AutoLoginPop.this.login();
-        try {
-          Thread.sleep(800L);
-          return;
-        } catch (InterruptedException interruptedException) {
-          interruptedException.printStackTrace();
-          return;
-        } 
+        btn_login.setText("登录中...");
+            flag = true;
+            login();
+            try {
+                Thread.sleep(800);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
       }
     };
   
@@ -70,12 +68,12 @@ public class AutoLoginPop extends Dialog implements View.OnClickListener {
     this.flag = false;
     this.handler.postDelayed(this.thread, 2500L);
     if (SharedPreferenceUtil.getUserType() != 2) {
-      this.btn_bindPhone.setVisibility(0);
+      this.btn_bindPhone.setVisibility(View.VISIBLE);
       this.btn_bindPhone.getPaint().setFlags(8);
       this.btn_bindPhone.getPaint().setAntiAlias(true);
       return;
     } 
-    this.btn_bindPhone.setVisibility(8);
+    this.btn_bindPhone.setVisibility(View.GONE);
   }
   
   private void login() { YZSDK.instance().fastLogin(this.context, new LoginCallBack(this.context) {
