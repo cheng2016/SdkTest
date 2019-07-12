@@ -24,7 +24,7 @@ public class Share {
       String str = jSONObject.optString("msg");
       share(paramContext, jSONObject.optString("title"), str, jSONObject.optString("imgPath"));
       return;
-    } catch (Exception paramContext) {
+    } catch (Exception e) {
       return;
     } 
   }
