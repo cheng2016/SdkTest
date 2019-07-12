@@ -98,9 +98,12 @@ public class BindPhonePop extends Dialog implements View.OnClickListener {
           public void onResult(ResultCode param1ResultCode, String param1String1, String param1String2) {
             Toast.makeText(BindPhonePop.this.context, param1String1, 0).show();
             if (param1ResultCode == ResultCode.SUCCESS)
-              BindPhonePop.this.et_phone.post(new Runnable() {
-                    public void run() { (new TimeThread(BindPhonePop.null.this.this$0.btn_phone_code, 60000L, 1000L)).start(); }
-                  }); 
+              et_phone.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            new TimeThread(btn_phone_code, 60 * 1000, 1000).start();
+                        }
+                    });
           }
         });
   }
@@ -128,9 +131,3 @@ public class BindPhonePop extends Dialog implements View.OnClickListener {
       cancel(); 
   }
 }
-
-
-/* Location:              C:\Users\mitni\Desktop\gitwork\AndroidTool\classes-dex2jar.jar!\com\icloud\sdk\view\BindPhonePop.class
- * Java compiler version: 6 (50.0)
- * JD-Core Version:       1.0.6
- */
