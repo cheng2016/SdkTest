@@ -1,5 +1,6 @@
 package com.icloud.sdk.model;
 
+import android.Manifest;
 import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -60,7 +61,7 @@ public class ClientDeviceInfo {
     }
 
     public void getMacAddress (Context paramContext){
-      WifiManager wifiManager = (WifiManager) paramContext.getSystemService("wifi");
+      WifiManager wifiManager = (WifiManager) paramContext.getSystemService(Context.WIFI_SERVICE);
       if (wifiManager != null) {
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
         if (wifiInfo != null)
