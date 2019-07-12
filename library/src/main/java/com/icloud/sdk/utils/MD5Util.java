@@ -7,19 +7,21 @@ public class MD5Util {
           "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
           "a", "b", "c", "d", "e", "f" };
 
-  public static String MD5Encode(String paramString1, String paramString2) {
-    try {
-      paramString1 = new String(paramString1);
-      try {
-        MessageDigest messageDigest = MessageDigest.getInstance("MD5");
-        return (paramString2 == null || "".equals(paramString2)) ? byteArrayToHexString(messageDigest.digest(paramString1.getBytes())) : byteArrayToHexString(messageDigest.digest(paramString1.getBytes(paramString2)));
-      } catch (Exception paramString2) {
-        return paramString1;
-      }
-    } catch (Exception paramString1) {
-      return null;
-    }
-  }
+	public static String MD5Encode(String origin, String charsetname) {
+		String resultString = null;
+		try {
+			resultString = new String(origin);
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			if (charsetname == null || "".equals(charsetname))
+				resultString = byteArrayToHexString(md.digest(resultString
+						.getBytes()));
+			else
+				resultString = byteArrayToHexString(md.digest(resultString
+						.getBytes(charsetname)));
+		} catch (Exception exception) {
+		}
+		return resultString;
+	}
 
   private static String byteArrayToHexString(byte[] paramArrayOfByte) {
     StringBuffer stringBuffer = new StringBuffer();
@@ -28,12 +30,12 @@ public class MD5Util {
     return stringBuffer.toString();
   }
 
-  private static String byteToHexString(byte paramByte) {
-    byte b = paramByte;
-    paramByte = b;
-    if (b < 0)
-      paramByte = b + 256;
-    b = paramByte / 16;
-    return hexDigits[b] + hexDigits[paramByte % 16];
-  }
+	private static String byteToHexString(byte b) {
+		int n = b;
+		if (n < 0)
+			n += 256;
+		int d1 = n / 16;
+		int d2 = n % 16;
+		return hexDigits[d1] + hexDigits[d2];
+	}
 }
