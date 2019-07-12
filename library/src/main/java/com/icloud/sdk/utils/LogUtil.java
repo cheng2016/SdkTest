@@ -47,7 +47,7 @@ public class LogUtil {
         fileOutputStream.write((dformat.format(Long.valueOf(Calendar.getInstance().getTimeInMillis())) + " " + paramString).getBytes());
         fileOutputStream.write(10);
         fileOutputStream.close();
-      } catch (IOException paramString) {}
+      } catch (IOException e) {}
       return;
     } 
   }
@@ -84,8 +84,8 @@ public class LogUtil {
       fileOutputStream.write(stringBuffer.toString().getBytes());
       fileOutputStream.close();
       return;
-    } catch (Exception paramContext) {
-      Log.e("crash", "an error occured while writing file...", paramContext);
+    } catch (Exception e) {
+      Log.e("crash", "an error occured while writing file...", e);
       return;
     } 
   }
