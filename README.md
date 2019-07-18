@@ -30,7 +30,6 @@ life is so boring. ------------------------------fanbianyi----------------------
 
       最后通过反射的方式实例化插件的实现类。达到使用插件化的方式使用百度SDK替换空壳SDK的具体实现
   
-  [demo](https://github.com/cheng2016/LoginSdk)
   
   [PluginFactory](https://github.com/cheng2016/AndroidUtil/tree/master/util/PluginFactory.java)
   
