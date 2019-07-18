@@ -5,6 +5,7 @@ life is so boring. ------------------------------fanbianyi----------------------
 ## Contact Me
 
 - Github: github.com/cheng2016
+- Email: mitnick.cheng@outlook.com
 
 # Lisence
 
