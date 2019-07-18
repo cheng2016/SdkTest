@@ -66,6 +66,14 @@ life is so boring. ------------------------------fanbianyi----------------------
 		return null;
 	}
 
+## Android Apk混淆日记
+    
+- 如果有依赖的Library需要混淆只需在app主目录下build.gradle下配置混淆就行了
+
+- 如果Library的build.gradle文件设置了混淆则断点debug模式就无效了
+
+- 依赖的Library如果打成aar包则必须将其build.gradle中的远程依赖换成本地jar包，不然打出来的aar包不包含其远程库的 compile 依赖包
+
 ## Contact Me
 
 - Github: github.com/cheng2016
