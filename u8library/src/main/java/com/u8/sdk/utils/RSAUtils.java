@@ -23,7 +23,7 @@ public class RSAUtils {
     private static final String PRIVATE_KEY = "RSAPrivateKey";
 
     public static Map<String, Object> generateKeys() throws Exception {
-        keyPairGen = KeyPairGenerator.getInstance("RSA");
+        KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance("RSA");
         keyPairGen.initialize(1024);
 
         KeyPair keyPair = keyPairGen.generateKeyPair();
