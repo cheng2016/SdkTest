@@ -8,7 +8,11 @@ life is so boring. ------------------------------fanbianyi----------------------
 
 1. [apktool](https://www.softpedia.com/get/Programming/Debuggers-Decompilers-Dissasemblers/ApkTool.shtml)
 
-        apktool_2.3.4.jar d -f demo.apk
+	   //反编译
+	   apktool_2.3.4.jar d -f demo.apk 
+
+	   //重新打包
+	   apktool_2.3.4.jar b .\demo\   
     
 2. [dex2Jar](https://nchc.dl.sourceforge.net/project/dex2jar/dex2jar-2.0.zip)
 
@@ -17,7 +21,15 @@ life is so boring. ------------------------------fanbianyi----------------------
 3. [jd-gui](https://www.softpedia.com/get/Programming/Debuggers-Decompilers-Dissasemblers/JD-GUI.shtml)
   
         打开dex2Jar反编译后的classes-dex2jar.jar文件即可查看java源码
-  
+
+4. [签名](https://cloud.tencent.com/developer/article/1335295)
+
+jarsigner -verbose -keystore [your_key_store_path] -signedjar [signed_apk_name] [usigned_apk_name] [your_key_store_alias] -digestalg SHA1 -sigalg MD5withRSA
+
+       jarsigner -verbose -keystore swzg.keystore -signedjar signApp.apk YunzhongSdks.apk daxiang -digestalg SHA1 -sigalg MD5withRSA
+
+[idea 删除代码的注释](https://blog.csdn.net/tomlam/article/details/78873667)
+
 [防止反编译，代码混淆](https://github.com/cheng2016/OkhttpHelper)
 
 ### Android SDK开发
