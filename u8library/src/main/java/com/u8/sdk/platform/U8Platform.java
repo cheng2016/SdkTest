@@ -115,7 +115,7 @@ public class U8Platform {
                     U8SDK.getInstance().runOnMainThread(new Runnable() {
 
                         public void run() {
-                            if (U8Platform. null. this.this$0.isSwitchAccount){
+                            if (U8Platform.this.isSwitchAccount){
                                 if (authResult.isSuc()) {
                                     callback.onSwitchAccount(authResult);
                                 } else {

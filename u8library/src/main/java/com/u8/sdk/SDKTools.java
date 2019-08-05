@@ -50,8 +50,8 @@ public class SDKTools {
 
 
     public static String getAssetConfigs(Context context, String assetsFile) {
-        reader = null;
-        br = null;
+        InputStreamReader reader = null;
+        BufferedReader br = null;
         try {
             reader = new InputStreamReader(context.getAssets().open(assetsFile));
             br = new BufferedReader(reader);
@@ -209,10 +209,10 @@ public class SDKTools {
         ApplicationInfo appInfo = context.getApplicationInfo();
         String sourceDir = appInfo.sourceDir;
         String key = "META-INF/" + prefix;
-        zip = null;
+        ZipFile zip = null;
         try {
             zip = new ZipFile(sourceDir);
-            entries = zip.entries();
+            Enumeration entries = zip.entries();
             String ret = null;
             while (entries.hasMoreElements()) {
                 ZipEntry entry = (ZipEntry) entries.nextElement();

@@ -344,7 +344,7 @@ public class U8SDKSingle {
                 return;
             }
 
-            for (PayParams order : orders) {
+            for (final PayParams order : orders) {
 
                 if (order.getState() != 1) {
                     Log.d("U8SDK", "order state is not suc. just ignore." + order.getOrderID());
@@ -376,7 +376,7 @@ public class U8SDKSingle {
                 return;
             }
 
-            for (PayParams order : orders) {
+            for (final PayParams order : orders) {
 
                 if (order.getState() != 1) {
                     continue;

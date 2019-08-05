@@ -31,11 +31,11 @@ public class U8HttpUtils {
     public static String httpGet(String urlStr, Map<String, String> params) {
         String result = null;
         URL url = null;
-        connection = null;
-        in = null;
+        HttpURLConnection connection = null;
+        InputStreamReader in = null;
 
         try {
-            paramsEncoded = "";
+            String paramsEncoded = "";
             if (params != null) {
                 paramsEncoded = urlParamsFormat(params, "UTF-8");
             }
@@ -92,11 +92,11 @@ public class U8HttpUtils {
     public static String httpPost(String urlStr, Map<String, String> params) {
         String result = null;
         URL url = null;
-        connection = null;
-        in = null;
+        HttpURLConnection connection = null;
+        InputStreamReader in = null;
 
         try {
-            paramsEncoded = "";
+            String paramsEncoded = "";
             if (params != null) {
                 paramsEncoded = urlParamsFormat(params, "UTF-8");
             }

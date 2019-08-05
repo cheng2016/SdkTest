@@ -85,7 +85,7 @@ public class GUtils {
             WifiInfo wifiInf = wifiMan.getConnectionInfo();
 
             if (wifiInf != null && "02:00:00:00:00:00".equals(wifiInf.getMacAddress())) {
-                result = null;
+                String result = null;
                 try {
                     result = getAdressMacByInterface();
                     if (result != null) {
@@ -116,7 +116,7 @@ public class GUtils {
     @SuppressLint({"NewApi"})
     private static String getAdressMacByInterface() {
         try {
-            all = Collections.list(NetworkInterface.getNetworkInterfaces());
+            List all = Collections.list(NetworkInterface.getNetworkInterfaces());
             for (NetworkInterface nif : all) {
                 if (nif.getName().equalsIgnoreCase("wlan0")) {
                     byte[] macBytes = nif.getHardwareAddress();
