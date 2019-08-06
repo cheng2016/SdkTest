@@ -132,8 +132,8 @@ public class Log {
 
             Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
 
-                public void uncaughtException(Thread t, Throwable e) {
-                    (new Thread(new Runnable(this, e) {
+                public void uncaughtException(Thread t, final Throwable e) {
+                    (new Thread(new Runnable() {
 
 
                         public void run() {
